@@ -1,11 +1,7 @@
-# octo-message-export-api Go 单镜像构建（多阶段）
-# 范式参考 octo-search：CGO_ENABLED=0 静态二进制 + scratch runtime。
-#
-
-ARG GOLANG_IMAGE=golang:1.25.3
+# Multi-stage build: CGO_ENABLED=0 static binary + scratch runtime.
 
 # ---------- build ----------
-FROM ${GOLANG_IMAGE} AS builder
+FROM golang:1.25.3 AS builder
 
 ARG GIT_COMMIT=unknown
 ARG GIT_BRANCH=unknown
