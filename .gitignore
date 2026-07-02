@@ -1,0 +1,38 @@
+# Binaries
+/bin/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test
+*.test
+*.out
+coverage.txt
+
+# Go
+vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Local env / secrets
+.env
+.env.local
+*.local.yaml
+config.local.*
+
+# Logs / runtime
+*.log
+*.jsonl
+/tmp/
+
+# Internal deployment artifacts — kept only in the codex internal repo,
+# never committed to the public GitHub repo. Belt-and-braces on top of the
+# fact that these files simply don't exist in the GitHub clone.
+.gitlab-ci.yml
+Dockerfile.ci
+manifests/
+deploy/k8s/
