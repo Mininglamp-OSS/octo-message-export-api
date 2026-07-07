@@ -1,6 +1,6 @@
-// Package handler 实现 HTTP 路由 + 请求解析 + 响应序列化（dev-guide §A1）。
+// Package handler 实现 HTTP 路由 + 请求解析 + 响应序列化。
 //
-// Phase 0 精简：用标准库 net/http 1.22+ ServeMux 的 method+path 路由，不引 gorilla/mux。
+// 精简：用标准库 net/http 1.22+ ServeMux 的 method+path 路由，不引 gorilla/mux。
 // 鉴权 / X-Request-Id 由 auth.Middleware 处理（仅业务路由套；健康检查 / metrics 直通）。
 package handler
 

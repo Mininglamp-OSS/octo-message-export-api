@@ -14,7 +14,7 @@ import (
 // ErrNotFound 任务不存在（或非本 caller 创建，由调用方决定是否区分）。
 var ErrNotFound = errors.New("task not found")
 
-// Store 是 task / parts 元数据的持久化接口（dev-guide §A4）。
+// Store 是 task / parts 元数据的持久化接口。
 type Store interface {
 	Create(ctx context.Context, t *Task) error
 	Get(ctx context.Context, taskID string) (*Task, error)
@@ -175,7 +175,7 @@ func (s *MySQLStore) AppendPart(ctx context.Context, p *Part) error {
 	if err != nil {
 		return fmt.Errorf("marshal channel_ids: %w", err)
 	}
-	// ON DUPLICATE KEY UPDATE：重跑同 part_seq 时覆盖（dev-guide §J.4 幂等约束）。
+	// ON DUPLICATE KEY UPDATE：重跑同 part_seq 时覆盖（幂等约束）。
 	_, err = s.db.ExecContext(ctx, `
 		INSERT INTO batch_task_part
 		  (task_id, part_seq, s3_key, size_bytes, message_count, sha256, channel_ids_json, created_at)

@@ -1,6 +1,6 @@
 // Package osclient 封装 OpenSearch 调用：_count、PIT 开/关、search_after 翻页。
 //
-// 只暴露 batch 服务需要的最小操作面（dev-guide §C.1/§C.4）。
+// 只暴露 batch 服务需要的最小操作面。
 // 排序口径：messageId desc + subSeq desc（(messageId,subSeq) 全局唯一 tie-breaker，富文本父+虚拟子文档去重靠 must_not virtual）。
 // 对外契约为降序（保留最新优先）；消费方如需升序自行排序。
 package osclient
@@ -115,7 +115,7 @@ func filterQuery(channelID string, startTS, endTS int64) map[string]any {
 	}
 }
 
-// Count 走 _count API，仅用于 submit 期单 channel 计数（dev-guide §C.1）。
+// Count 走 _count API，仅用于 submit 期单 channel 计数。
 func (o *OSClient) Count(ctx context.Context, index, channelID string, startTS, endTS int64) (int64, error) {
 	start := time.Now()
 	body, _ := json.Marshal(map[string]any{"query": filterQuery(channelID, startTS, endTS)})

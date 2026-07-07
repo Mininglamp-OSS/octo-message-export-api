@@ -8,7 +8,7 @@ import (
 
 // extractPayload 把 OS doc 的 payload object 提取为对外的纯文本字符串。
 //
-// 规则（api-spec §6.2 / dev-guide §6.2，以 indexer 实际写入口径为准）：
+// 规则（api-spec §6.2，以 indexer 实际写入口径为准）：
 //   - type==1（纯文本）：取 payload.text.content；缺失时 fallback payloadRaw.content
 //   - type==14（富文本）：取 payload.richText.searchText —— indexer(buildRichText) 已把富文本
 //     收敛成拼好的纯文本（plain + 各 image/file block name/caption，image 已占位 "[图片]"），

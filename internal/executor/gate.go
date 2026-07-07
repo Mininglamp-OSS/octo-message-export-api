@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Gate 是全局并发上限的 in-process 实现（design.md §1.1 #11：不引 Redis）。
+// Gate 是全局并发上限的 in-process 实现（不引 Redis）。
 // 用带缓冲 chan 作信号量；一个 token = 一个"在系统中"的 task（queued+running）。
 // submit 路径 Acquire（满则排队等待，超时返回 false → 503），
 // executor 在 task 终态时 Release。

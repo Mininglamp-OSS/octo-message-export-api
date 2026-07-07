@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// AuditEvent 一条审计记录（dev-guide §D.4 行格式，v1 落本地）。
+// AuditEvent 一条审计记录（v1 落本地）。
 type AuditEvent struct {
 	TS        int64  `json:"ts"`
 	Event     string `json:"event"` // submit | get | delete | auth_fail | system_protection_reject
@@ -25,7 +25,7 @@ type AuditEvent struct {
 }
 
 // Auditor 写审计日志：既追加到本地 jsonl，又 println 到 stdout
-// （design.md §11.5：emptyDir 不持久，靠 stdout 副本被 K8s 收集）。
+// （emptyDir 不持久，靠 stdout 副本被 K8s 收集）。
 type Auditor struct {
 	mu  sync.Mutex
 	f   *os.File

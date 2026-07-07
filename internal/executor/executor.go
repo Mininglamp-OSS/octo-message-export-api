@@ -1,4 +1,4 @@
-// Package executor 是 task 执行引擎（dev-guide §A5）：worker pool 从内存 chan 取 task，
+// Package executor 是 task 执行引擎：worker pool 从内存 chan 取 task，
 // 开 PIT、按 channel 字典序 search_after 翻页、经 result.Writer 落 NDJSON part 到 S3，
 // 写终态。全局并发上限由 Gate（gate.go）控制,与 submit 路径共享。
 package executor

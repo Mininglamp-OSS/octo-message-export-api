@@ -1,6 +1,6 @@
 // Package metrics 暴露 Prometheus 指标 + 本地审计日志（jsonl）。
 //
-// design.md §6 / §4.3：v1 只暴露 /metrics endpoint（运维手工建面板），
+// v1 只暴露 /metrics endpoint（运维手工建面板），
 // 审计落本地 jsonl（每行同时 fmt 到 stdout，便于 K8s 日志收集）。
 package metrics
 
@@ -9,7 +9,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
-// 指标集合（design.md §1.1 #13 最小集合）。
+// 指标集合（最小集合）。
 // 注册到自建 registry，避免依赖默认全局 registry（便于测试隔离）。
 var (
 	Registry = prometheus.NewRegistry()
@@ -106,7 +106,7 @@ var (
 	})
 )
 
-// SizeBucket 把命中规模归一到 30k/100k/300k 三档 label（design.md §6）。
+// SizeBucket 把命中规模归一到 30k/100k/300k 三档 label。
 func SizeBucket(count int64) string {
 	switch {
 	case count <= 30000:

@@ -1,4 +1,4 @@
-// Command octo-message-export-api 是服务入口（dev-guide §A，design.md §2）。
+// Command octo-message-export-api 是服务入口。
 //
 // 启动流程：
 //  1. 加载 .env.local / .env（若存在）→ config.Load()

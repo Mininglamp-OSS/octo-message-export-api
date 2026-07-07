@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# scripts/e2e.sh — 本地端到端冒烟（design.md §7 / brief）。
+# scripts/e2e.sh — 本地端到端冒烟。
 #
 # 流程：确保 DB/bucket/index 就绪 → 启服务 → POST 提交真实任务 → poll 直到 completed
 #       → 下载 parts[0] → gunzip → 校验 NDJSON 首行 5 字段齐全。
@@ -15,7 +15,7 @@ cd "$ROOT"
 
 # --- 配置（与 .env.local.example 对齐）---
 MYSQL_CONTAINER="octo-mysql-1"
-MYSQL_ROOT_PW="ee52cd83ecfb1f4bbd79535ccea828e3"
+MYSQL_ROOT_PW="${MYSQL_ROOT_PW:?set MYSQL_ROOT_PW env before running e2e.sh (see .env.local.example)}"
 DB_NAME="octo_message_export_api"
 OS_ENDPOINT="http://127.0.0.1:9201"
 OS_INDEX="wukongim-messages-read"

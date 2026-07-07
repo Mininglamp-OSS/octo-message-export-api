@@ -1,7 +1,7 @@
 // Package config 加载并持有服务运行所需的全部配置。
 //
 // v1 配置全部来自环境变量（main 启动时用 godotenv 预加载 .env）。
-// 不做配置中心 / 热刷新（design.md §5：改配置重启服务）。
+// 不做配置中心 / 热刷新（改配置重启服务）。
 package config
 
 import (
@@ -163,7 +163,7 @@ func (c *Config) validate() error {
 }
 
 // parseCallerTokens 解析 "name=token,name=token" 格式为 token->caller 反查表。
-// 若某项不含 '='，caller 名 fallback 到 "default"（design.md / 任务要求）。
+// 若某项不含 '='，caller 名 fallback 到 "default"。
 func parseCallerTokens(raw string) map[string]string {
 	out := make(map[string]string)
 	for _, item := range strings.Split(raw, ",") {

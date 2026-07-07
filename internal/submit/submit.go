@@ -1,4 +1,4 @@
-// Package submit 实现 POST /v1/messages/batch 的后端逻辑（dev-guide §A3）：
+// Package submit 实现 POST /v1/messages/batch 的后端逻辑：
 // 字段校验 → 逐 channel _count 求和拦截 → Gate 占槽 → store.Create → enqueue。
 package submit
 
@@ -77,7 +77,7 @@ func (s *Submitter) Submit(ctx context.Context, caller, requestID string, req *R
 		return "", err
 	}
 
-	// 逐 channel _count 求和（Phase 0 精简：不用 multi-search）。
+	// 逐 channel _count 求和（精简：不用 multi-search）。
 	countStart := time.Now()
 	var total int64
 	for _, ch := range req.Scope.Channels {
@@ -168,7 +168,7 @@ func validate(req *Request) *Error {
 const base32Alphabet = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
 
 // NewTaskID 生成 "ost_" + 24 位 base32 id。前 8 位编码毫秒时间戳（粗略单调），
-// 后 16 位随机。不追求严格 ULID（brief：单调即可）。
+// 后 16 位随机。不追求严格 ULID（单调即可）。
 func NewTaskID() string {
 	var b [24]byte
 	ms := uint64(time.Now().UnixMilli())

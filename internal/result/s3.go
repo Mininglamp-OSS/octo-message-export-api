@@ -29,7 +29,7 @@ type S3Config struct {
 }
 
 // S3Uploader 基于 aws-sdk-go-v2 + s3manager 的 Uploader 实现。
-// 大于分片阈值时 s3manager 自动走 multipart（dev-guide §C.5）。
+// 大于分片阈值时 s3manager 自动走 multipart。
 type S3Uploader struct {
 	cfg      S3Config
 	client   *s3.Client
@@ -69,7 +69,7 @@ func NewS3Uploader(ctx context.Context, cfg S3Config) (*S3Uploader, error) {
 // objectRoot 是本服务在共用 bucket 内的根命名空间（用项目名，区分同 bucket 其它业务数据）。
 const objectRoot = "octo-message-export-api"
 
-// PartKey 生成 part 的 S3 key 主体（不含环境前缀，dev-guide §C.5）：
+// PartKey 生成 part 的 S3 key 主体（不含环境前缀）：
 // octo-message-export-api/{yyyy-mm-dd}/{caller}/{task_id}/part-{seq:03d}.ndjson.gz
 func PartKey(day, caller, taskID string, seq int) string {
 	return fmt.Sprintf("%s/%s/%s/%s/part-%03d.ndjson.gz", objectRoot, day, caller, taskID, seq)

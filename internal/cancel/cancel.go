@@ -1,6 +1,6 @@
-// Package cancel 实现 DELETE /v1/messages/batch/{id} 的后端逻辑（dev-guide §A7，精简版）。
+// Package cancel 实现 DELETE /v1/messages/batch/{id} 的后端逻辑（精简版）。
 //
-// Phase 0 精简：不做后台 GC 扫描；只在取消时 CAS 状态 + 通知 executor 取消 running task
+// 精简：不做后台 GC 扫描；只在取消时 CAS 状态 + 通知 executor 取消 running task
 // + best-effort 清理 S3 partial。过期 task 清理留 v0.2。
 package cancel
 

@@ -62,7 +62,7 @@ type TimeRange struct {
 	EndTS   int64 `json:"end_ts"`
 }
 
-// Warning partial 截断告警（api-spec §3.2 / dev-guide §C.6）。
+// Warning partial 截断告警（api-spec §3.2）。
 type Warning struct {
 	ChannelID  string `json:"channel_id,omitempty"`
 	Code       string `json:"code"` // per_channel_truncated / total_truncated
